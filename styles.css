@@ -1,0 +1,45 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #131313;
+    color: #fff;
+}
+
+h1 {
+    font-size: 3em;
+}
+
+h2 {
+    font-size: 2em;
+}
+
+.container {
+    width: clamp(600px, 75%, 1200px);
+    margin: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.link {
+    color: rgb(115, 187, 255);
+    text-decoration: none;
+}
+
+.link:visited {
+    color: rgb(94, 177, 255);
+    text-decoration: none;
+}
+
+.link:hover {
+    color: rgb(165, 208, 249);
+}
