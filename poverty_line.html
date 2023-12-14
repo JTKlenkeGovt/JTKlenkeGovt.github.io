@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Choosing The Poverty Line</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="poverty_line.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="container">
+        <h1 class="center-text" style="text-decoration: underline;">Choosing the Poverty Line</h1>
+
+        <p>One of the most important things that the US Census Bureau does every year is setting the federal poverty
+            line (FPL). This number is used by dozens of government agencies and thousands of non-governmental
+            organizations
+            (like your local homeless shelter or food bank) to determine how to distribute resources. The metric also
+            provides a value to track over time and see how policies or other factors effect poverty over time.
+            Ultimately, this number is used to count the number of people in poverty.</p>
+        <p>But remember just because someone showed you a number doesn't mean it tells the whole story. The federal
+            poverty
+            line is ultimately arbitrary and doesn't take into account important factors like geographic location, cost
+            of living and more. There are other measures of poverty that consider
+            those factors (like the Cost of Living Index or Purchasing Power
+            Parity) but for now we'll keep things simple and just look at the FPL for single
+            individuals. This is worthwhile because lots of federal polices tie benefits to an individuals income as a
+            percentage of the FPL, examples include Children's Health Insurance Program, the National School Lunch
+            Program and Medicaid.</p>
+        <p>Alright, now that we know a bit about the FPL and its potential effects. Let's try to set it ourselves! Below
+            is a graph that tells us the number of people making an income that falls into certain brackets. This data
+            comes from the 2020 US Census. Each bar represents a yearly income bracket in increments of $2,500. That
+            means
+            that roughly 12.5 million people make less than $2,500 a year.</p>
+        <p>Drag the slider below the graph to choose a value for the FPL. Once you're happy with the value, click
+            "Confirm Choice" to see the affects of your decision!</p>
+
+        <div id="lineDiv">
+            <img src="imgs/income.svg">
+            <canvas id="lineCanvas" width="1000" height="500"></canvas>
+        </div>
+        <div class="slider-container">
+            <input type="range" id="poverty-line-slider" min="9.85" max="94.9" value="0" step=".005">
+        </div>
+        <h2 class="center-text" id="current-choice">Poverty Line: $0</h2>
+        <div class="center">
+            <button id="confirm" onclick="confirmLine()">Confirm Choice</button>
+        </div>
+
+        <div class="hidden center-text" id="show">
+            <h1 id="final-choice"></h1>
+            <h2 id="final-commentary"></h2>
+        </div>
+        <div class="hidden to-hidden" id="1">
+            <h3 class="center-text">Congratulations, you've single-handedly eradicated poverty!</h3>
+
+            <div class="center">
+                <img src="imgs/no-poverty.jpg">
+            </div>
+            <p> At least on paper. Remember all those government
+                agencies and non-governmental organizations that rely on this information? Unfortunately, the metric is
+                now useless. Maybe try a different value?</p>
+
+        </div>
+        <div class="hidden to-hidden" style="margin-bottom: 15em;" id="2">
+            <div class="picture-text">
+                <img src="imgs/foodbank.avif">
+
+            </div>
+            <p>This is Matthew Davis, he is a 61 year old disabled Army veteran. While he does receive veterans
+                benefits, he is unable to work full time and has an annual income of just over $6,000. Under the Total
+                Disability Individual Unemployability (TDIU) rating, disabled veterans are limited in the amount of paid
+                work
+                they are allowed to do. Getting a job while you’re on TDIU can be
+                grounds for the Veterans Affairs Services (VAS)
+                to revoke your benefits. VAS permits veterans to earn up to the federal poverty line for one person.
+                Unfortunately, now that value is so low that Matthew is must either stop working or loose his benefits.
+                This gives him no choice but to end his employment.</p>
+            <p>Because of this lowered poverty line, Matthew will lose thousands of dollars of wages and be unable to
+                contribute to his community with paid work. The lower poverty line has made him more reliant on
+                government services and prevented him from contributing to the workforce in any capacity.
+            </p>
+            <p>Is it fair for the federal poverty line to be below $5000 a year? The USDA's lowest-cost plan for food
+                is almost $3,000 a year and the national average amount spent on food is more than $5,000. Does it
+                really seem reasonable that spending about 60% of your income on food doesn't put you in poverty? What
+                about housing?</p>
+        </div>
+        <div class="hidden to-hidden" style="margin-bottom: 15em;" id="3">
+            <div class="picture-text">
+                <img src="imgs/snap-mother.avif">
+
+            </div>
+            <p>This is Lauren Brown, she is a 34 year old single mother living in who is pregnant with her second
+                daughter. She works at Costco and makes about $20 an hour. She works nearly full time and struggles to
+                pay for child care. She relies on Supplemental Nutrition Assistance Program (SNAP) to ensure she and her
+                family have enough to eat. The cutoff for eligibility is 130% of the federal poverty line. Two year ago,
+                when she was making $18 an hour, she qualified for the program. But now that she makes more than $20,000
+                a year, she no longer qualifies for the program. That means that even though Lauren is struggling to pay
+                rent and feed her family, she no longer receives SNAP benefits.</p>
+            <p>The problems that Lauren faces are widespread among low and middle income Americans. Many would consider
+                $20+ an hour to be a good wage, and comparatively speaking, it is. However, despite getting a higher
+                paying job Lauren finds herself worse off than she was before because she lost so much in benefits. This
+                is what many people call the "wellfare trap" where people are incentivised to stay on welfare programs
+                because earning more money would mean they no longer qualify for benefits and worse off than before.</p>
+            <p>Is setting a federal poverty line and tieing benefits to this number strengthening this trap? Is it
+                possible that the very existence of this number to measure poverty is making it worse?</p>
+        </div>
+        <div class="hidden to-hidden" style="margin-bottom: 15em;" id="4">
+            <div class="picture-text">
+                <img src="imgs/nick.webp">
+
+            </div>
+            <p>This is Nick Thompson, he is 28 years old and works part time as a graphic designer making around
+                $25,000 a year. However, his parents are millionaires who often cover his rent or finance his expensive
+                hobbies.
+            </p>
+            <p>Does he deserve to be categorized as a person in poverty? He has essentially no risk of
+                becoming homeless or not being able to afford food. Is income too 1-dimensional to measure something as
+                complex as poverty? Maybe deciding on one single number to encapsulate poverty is an impossible task.
+                But
+                is it useful?</p>
+        </div>
+        <div class="hidden to-hidden" style="margin-bottom: 15em;" id="5">
+            <div class="picture-text">
+                <img src="imgs/family-ctc.webp">
+
+            </div>
+            <p>This is Thomas Horton and his wife, Pamela Mudge they live near Pittsburgh, they make a little
+                more than $40,000 a year. Mr. Horton, 38, and a teenage son receive disability benefits, and Ms. Mudge
+                works part time so she can assist with his care for a bone disease that has required several back
+                operations. However, despite being near the median income for working adults and comfortably above the
+                poverty line. Their family still struggles to provide even basic luxuries to their kids.</p>
+            <p>After receiving tax credit payment ofr $750 a month from the expanded child tax credit, they were able to
+                break twice from their frugal norms.</p>
+            <p>One was a trip to Walmart, to quiet their classmates’ taunts over their thrift-shop clothes. Another was
+                the family’s
+                first vacation — a single night in a state park, where they pitched a borrowed tent and made s’mores. “I
+                saw a happiness
+                in my wife and kids I hadn’t seen in a long time,” he said. “I felt like father of the year.”</p>
+            <p>Source New York Times.</p>
+
+            <p>Is this family living in poverty? If they are living in a situation where they cannot afford even a
+                single vacation or clothes that keep their kids from being teased at school are they doing well?</p>
+
+        </div>
+        <div class="hidden to-hidden" style="margin-bottom: 15em;" id="6">
+            <p>As you've chosen it, the federal poverty line is set above the median income for working single
+                Americans. Are more than half of working Americans living in poverty? Maybe, but if so, it doesn't seem
+                like a particularly useful metric. If we want to classify those living in poverty as especially
+                deserving of aid, then labeling more than half of people isn't particularly useful, which is the
+                ultimate goal of deciding on a poverty line.</p>
+        </div>
+    </div>
+
+    <script src="poverty_line.js"></script>
+</body>
+
+</html>
